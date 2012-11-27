@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_reAuth" android:title="@string/menu_reAuth"></item><item android:id="@+id/menu_logout" android:title="@string/menu_logout"></item>
+    <item android:id="@+id/menu_advanced" android:title="@string/menu_advanced"></item>
+    <item android:id="@+id/menu_help" android:title="@string/menu_help"></item>
+    <item android:id="@+id/menu_about" android:title="@string/menu_about"></item>
+    
+</menu>
