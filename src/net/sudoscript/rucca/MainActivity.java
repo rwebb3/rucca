@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
         return true;
     }
     
-    protected void updateCredentials(View view){
+    public void updateCredentials(View view){
     	if(!(usernameEditText.getText().toString().equals(""))){
     		settings.edit().putString("username", usernameEditText.getText().toString()).commit();
     		usernameEditText.setHint(usernameEditText.getText().toString());
@@ -148,7 +148,7 @@ public class MainActivity extends Activity {
     	Toast.makeText(context, "Credentials updated", Toast.LENGTH_SHORT).show();
     }
     
-    protected void toggleButtonClick(View view){
+    public void toggleButtonClick(View view){
     	if(toggleButton.isChecked()){
     		settings.edit().putString("enabled", "true").commit();
 			WifiManager wfManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);

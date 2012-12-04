@@ -18,13 +18,13 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class SimpleCrypto {
 
-	protected static String encrypt(String seed, String cleartext) throws Exception {
+        public static String encrypt(String seed, String cleartext) throws Exception {
                 byte[] rawKey = getRawKey(seed.getBytes());
                 byte[] result = encrypt(rawKey, cleartext.getBytes());
                 return toHex(result);
         }
         
-	protected static String decrypt(String seed, String encrypted) throws Exception {
+        public static String decrypt(String seed, String encrypted) throws Exception {
                 byte[] rawKey = getRawKey(seed.getBytes());
                 byte[] enc = toByte(encrypted);
                 byte[] result = decrypt(rawKey, enc);
