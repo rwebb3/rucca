@@ -10,25 +10,25 @@ public class Data {
 	private static final String AESKEY = "wouldn't you like to know?";
 	private static final String WIFI_NETWORK = "rusecure";
 	 
-    public static String getAeskey() {
+    protected static String getAeskey() {
 		return AESKEY;
 	}
-	public static String getWifiNetwork() {
+    protected static String getWifiNetwork() {
 		return WIFI_NETWORK;
 	}
-	public static SharedPreferences getSettings(Context context) {
+    protected static SharedPreferences getSettings(Context context) {
 		return context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
     }
-	public static void setLogout(String l) {
+    protected static void setLogout(String l) {
 		logout = l;
 	}
-    public static String getLogout() {
+    protected static String getLogout() {
 		return logout;
 	}
-	public static int getLogoutTime() {
+    protected static int getLogoutTime() {
 		return logoutTime;
 	}
-	public static void setLogoutTime(int logoutTime) {
+    protected static void setLogoutTime(int logoutTime) {
 		Data.logoutTime = logoutTime;
 	}
 }
