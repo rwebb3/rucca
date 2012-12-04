@@ -97,12 +97,16 @@ public class Login extends AsyncTask<Void, Void, List<String>> {
 		if(webCode.size() >= 39 && webCode.get(23).equals("  You have been successfully logged on the network. ")){
 	    	Toast.makeText(context, "Authenticated!", Toast.LENGTH_SHORT).show();
 	    	Data.setLogoutTime((int) (System.currentTimeMillis() / 1000L));
+	    	//get logout key
+	    	Data.setLogout(webCode.get(39).substring(48));
+			Data.setLogout(Data.getLogout().substring(0, Data.getLogout().length()-2));
+	    	
+		} else if(webCode.size() >= 134 && webCode.get(134).equals("	<font color=\"red\">Invalid User Credentials.</font>")){
+			Toast.makeText(context, "Bad Username and Password.", Toast.LENGTH_SHORT).show();
 		} else {
-			Toast.makeText(context, "Could not Authenticate.", Toast.LENGTH_SHORT).show();
-			return;
+			Toast.makeText(context, "Error: Could not login. Will try again later.", Toast.LENGTH_SHORT).show();
 		}
 
-		Data.setLogout(webCode.get(39).substring(48));
-		Data.setLogout(Data.getLogout().substring(0, Data.getLogout().length()-2));
+		
    }
 }
