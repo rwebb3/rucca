@@ -1,11 +1,11 @@
 <resources>
 
-    <string name="app_name">Radford Clean Access</string>
+    <string name="app_name">RU Clean Access Client</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">Configure RU CCA</string>
-    <string name="update_button">Update Credentials</string>
-    <string name="label_username">Stored Username</string>
-    <string name="label_password">Stored Password</string>
+    <string name="update_button">Save Login Information</string>
+    <string name="label_username">Radford Username</string>
+    <string name="label_password">Radford Password</string>
     <string name="menu_advanced">Advanced</string>
     <string name="menu_help">Help</string>
     <string name="menu_about">About</string>
@@ -13,6 +13,6 @@
     <string name="menu_reAuth">Re-Authenticate</string>
     <string name="aboutText">This app was written by Sam Wright (swright5@radford.edu) and was tested for use on Radford University\'s Campus. By using this app you are agreeing to breaking the Acceptable Use Policy.\n\nVersion: 0.9.3</string>
     <string name="helpText">If you need help with this application please email the developer.</string>
-    <string name="changeLog">Change Log:\n\n Build: 1.0.0 \n Bug Fix: Fixed Authentication Dectection. \n Welcome to the Android Market!!\n\n Build: 0.9.3 \n Just some clean up in the code. Essentially the same as previous build. \n\n Build: 0.9.2 \n No Changes yet! First build!</string>
+    <string name="changeLog">Change Log:\n\n Build: 1.0.1 \n Fixed wording for clarity \n More Security\n\n Build: 1.0.0 \n Bug Fix: Fixed Authentication Dectection. \n Welcome to the Android Market!!\n\n Build: 0.9.3 \n Just some clean up in the code. Essentially the same as previous build. \n\n Build: 0.9.2 \n No Changes yet! First build!</string>
 
 </resources>
