@@ -13,6 +13,5 @@
     <string name="menu_reAuth">Re-Authenticate</string>
     <string name="aboutText">This app was written by Sam Wright (swright5@radford.edu) and was tested for use on Radford University\'s Campus. By using this app you are agreeing to breaking the Acceptable Use Policy.\n\n</string>
     <string name="helpText">If you need help with this application please email the developer.</string>
-    <string name="changeLog">Change Log:\n\n Build: 1.0.1 \n Fixed wording for clarity \n More Security\n\n Build: 1.0.0 \n Bug Fix: Fixed Authentication Dectection. \n Welcome to the Android Market!!\n\n Build: 0.9.3 \n Just some clean up in the code. Essentially the same as previous build. \n\n Build: 0.9.2 \n No Changes yet! First build!</string>
 
 </resources>

@@ -91,7 +91,8 @@ public class MainActivity extends Activity {
                 builder.setNegativeButton(android.R.string.ok, null);
                 final View v = LayoutInflater.from(this).inflate(R.layout.about, null);
                 final TextView tv = (TextView)v.findViewById(R.id.aboutText);
-                tv.setText(getString(R.string.helpText) + "\n\n" + getString(R.string.changeLog));
+                
+                tv.setText(getString(R.string.helpText) + "\n\n" + new changeLogBuilder().toString());
                 builder.setView(v);
                 builder.create().show();
         		return true;
