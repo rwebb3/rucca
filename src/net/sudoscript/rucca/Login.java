@@ -95,7 +95,7 @@ public class Login extends AsyncTask<Void, Void, List<String>> {
    protected void onPostExecute(List<String> webCode) {
   	 	//dialog.dismiss();
 		if(Utilities.contains(webCode, "You have been successfully logged on the network")){
-	    	Toast.makeText(context, "Authenticated!", Toast.LENGTH_SHORT).show();
+	    	Toast.makeText(context, "Logged in!", Toast.LENGTH_SHORT).show();
 	    	Data.setLogoutTime((int) (System.currentTimeMillis() / 1000L));
 	    	//get logout key
 	    	Data.setLogout(webCode.get(39).substring(48));
