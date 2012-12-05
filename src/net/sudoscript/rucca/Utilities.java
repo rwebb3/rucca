@@ -37,4 +37,16 @@ public class Utilities {
 		}
 		return false;
     }
+    static int indexOfList(List<String> webCode, String findme){
+		java.util.regex.Pattern p = java.util.regex.Pattern.compile("");
+		java.util.regex.Matcher m = p.matcher("");
+		int i = 0;
+		for(String s : webCode)
+		{
+		    m.reset(s);
+		    if(m.find()) return i;
+		    i++;
+		}
+		return i;
+    }
 }
