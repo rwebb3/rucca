@@ -21,17 +21,19 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-public class Login extends AsyncTask<Void, Void, List<String>> {
+class Login extends AsyncTask<Void, Void, List<String>> {
 	Context context = null;
 	//ProgressDialog dialog = ProgressDialog.show(MainActivity.getAppContext(), "", "Logging in. Please wait...", true);
+	
+	Login(Context context){
+		   this.context = context;
+	}
+	
    @Override
    protected void onPreExecute() {
 	Data.setLogout("");
 	//create Logging in dialog
    	//dialog.show();	
-   }
-   public Login(Context context){
-	   this.context = context;
    }
 	 
    @Override

@@ -7,7 +7,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
 
-public class Utilities {
+class Utilities {
     static String getDecryptSettingsPassword(Context context){
     	String passwordAsEncrypted = Data.getSettings(context).getString("password", "");
         String password = ""; //Decrypted
@@ -20,7 +20,7 @@ public class Utilities {
 		return password;
     }
     @SuppressWarnings("deprecation")
-	public static String getIP(Context context)
+	static String getIP(Context context)
     {
     	WifiManager myWifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
     	WifiInfo myWifiInfo = myWifiManager.getConnectionInfo();
