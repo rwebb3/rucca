@@ -94,15 +94,17 @@ public class Login extends AsyncTask<Void, Void, List<String>> {
    @Override
    protected void onPostExecute(List<String> webCode) {
   	 	//dialog.dismiss();
-		if(webCode.size() >= 39 && webCode.get(23).equals("  You have been successfully logged on the network. ")){
+		if(Utilities.contains(webCode, "You have been successfully logged on the network")){
 	    	Toast.makeText(context, "Authenticated!", Toast.LENGTH_SHORT).show();
 	    	Data.setLogoutTime((int) (System.currentTimeMillis() / 1000L));
+	    	//get logout key
+	    	Data.setLogout(webCode.get(39).substring(48));
+	    	Data.setLogout(Data.getLogout().substring(0, Data.getLogout().length()-2));
 		} else {
 			Toast.makeText(context, "Could not Authenticate.", Toast.LENGTH_SHORT).show();
 			return;
 		}
 
-		Data.setLogout(webCode.get(39).substring(48));
-		Data.setLogout(Data.getLogout().substring(0, Data.getLogout().length()-2));
+		
    }
 }
