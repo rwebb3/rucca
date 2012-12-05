@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -110,8 +112,18 @@ public class MainActivity extends Activity {
         		return true;
             }
             else if(item.getTitle().equals("Re-Authenticate")){
-        		Login l = new Login(context);
-        		l.execute();
+            	ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService( Context.CONNECTIVITY_SERVICE );
+        		NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
+            	if(activeNetInfo != null && activeNetInfo.getTypeName().equals("WIFI")){
+	            	WifiManager wfManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+	    		    WifiInfo wifiinfo = wfManager.getConnectionInfo();  
+	    		    if (wifiinfo.getSSID().equals(Data.getWifiNetwork())){
+	    		      Login l = new Login(context);
+	    		      l.execute();
+	    		    } 
+            	} else {
+    		    	Toast.makeText(context, "Please connect to " + Data.getWifiNetwork() + ".", Toast.LENGTH_LONG).show();
+    		    }
         		return true;
             }
             	
