@@ -28,7 +28,7 @@ class Utilities {
     	return android.text.format.Formatter.formatIpAddress(ipAddress);
     }
     static Boolean contains(List<String> webCode, String findme){
-		java.util.regex.Pattern p = java.util.regex.Pattern.compile("");
+		java.util.regex.Pattern p = java.util.regex.Pattern.compile(findme);
 		java.util.regex.Matcher m = p.matcher("");
 		for(String s : webCode)
 		{
@@ -38,7 +38,7 @@ class Utilities {
 		return false;
     }
     static int indexOfList(List<String> webCode, String findme){
-		java.util.regex.Pattern p = java.util.regex.Pattern.compile("");
+		java.util.regex.Pattern p = java.util.regex.Pattern.compile(findme);
 		java.util.regex.Matcher m = p.matcher("");
 		int i = 0;
 		for(String s : webCode)
