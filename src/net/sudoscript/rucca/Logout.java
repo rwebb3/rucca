@@ -77,7 +77,7 @@ import android.widget.Toast;
       @Override
       protected void onPostExecute(List<String> webCode) {
      	 	//dialog.dismiss();
-			if(webCode.get(1).contains("<!--error=0-->")){
+			if(webCode.size() >= 1 && webCode.get(1).contains("<!--error=0-->")){
 				Toast.makeText(context, "You have been logged out!", Toast.LENGTH_SHORT).show();
 				context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE).edit().putString("enabled", "false").commit();
 			} else {
