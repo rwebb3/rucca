@@ -100,9 +100,10 @@ public class Login extends AsyncTask<Void, Void, List<String>> {
 	    	//get logout key
 	    	Data.setLogout(webCode.get(39).substring(48));
 	    	Data.setLogout(Data.getLogout().substring(0, Data.getLogout().length()-2));
+		} else if(Utilities.contains(webCode, "Invalid User Credentials")){
+			Toast.makeText(context, "Invalid Username/Password.", Toast.LENGTH_SHORT).show();
 		} else {
-			Toast.makeText(context, "Could not Authenticate.", Toast.LENGTH_SHORT).show();
-			return;
+			Toast.makeText(context, "Network Error. Will try again later", Toast.LENGTH_SHORT).show();
 		}
 
 		
