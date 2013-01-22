@@ -30,10 +30,16 @@ public class SimpleCrypto {
                 byte[] result = decrypt(rawKey, enc);
                 return new String(result);
         }
-
+        
+        private final static int JELLY_BEAN_4_2 = 17;
         private static byte[] getRawKey(byte[] seed) throws Exception {
                 KeyGenerator kgen = KeyGenerator.getInstance("AES");
-                SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+                SecureRandom sr = null;
+                if (android.os.Build.VERSION.SDK_INT >= JELLY_BEAN_4_2) {
+                    sr = SecureRandom.getInstance("SHA1PRNG", "Crypto");
+                } else {
+                    sr = SecureRandom.getInstance("SHA1PRNG");
+                }
                 sr.setSeed(seed);
             kgen.init(128, sr); // 192 and 256 bits may not be available
             SecretKey skey = kgen.generateKey();
