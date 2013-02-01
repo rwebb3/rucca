@@ -11,7 +11,6 @@ import android.net.wifi.WifiManager;
 import android.util.Log;
 
 public class AutoAuthReciever extends BroadcastReceiver{
-	private static final String WIFI_NETWORK = Data.getWifiNetwork();
 	
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -38,9 +37,8 @@ public class AutoAuthReciever extends BroadcastReceiver{
 			System.out.println("WIFI!");
 			WifiManager wfManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
 		    WifiInfo wifiinfo = wfManager.getConnectionInfo();  
-		    if (wifiinfo.getSSID().equals(WIFI_NETWORK)){
-		      Login l = new Login(context);
-		      l.execute();
+		    if (Utilities.isConnectedToNetwork(wifiinfo)){
+		    	new Login(context).execute();
 		    }
 		} else {
 			Log.d("RUCCA-Epoch", "NO! I am not. I'm dying...");

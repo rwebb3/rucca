@@ -118,7 +118,7 @@ public class MainActivity extends Activity {
             	if(activeNetInfo != null && activeNetInfo.getTypeName().equals("WIFI")){
 	            	WifiManager wfManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
 	    		    WifiInfo wifiinfo = wfManager.getConnectionInfo();  
-	    		    if (wifiinfo.getSSID().equals(Data.getWifiNetwork())){
+	    		    if (Utilities.isConnectedToNetwork(wifiinfo)){
 	    		      Login l = new Login(context);
 	    		      l.execute();
 	    		    } 
@@ -167,7 +167,7 @@ public class MainActivity extends Activity {
     		settings.edit().putString("enabled", "true").commit();
 			WifiManager wfManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
 		    WifiInfo wifiinfo = wfManager.getConnectionInfo();  
-		    if(wifiinfo.getSSID().equals(Data.getWifiNetwork())){
+		    if(Utilities.isConnectedToNetwork(wifiinfo)){
 		    	new Login(context).execute();
 		    }
 
