@@ -18,6 +18,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -97,8 +98,9 @@ class Login extends AsyncTask<Void, Void, List<String>> {
    protected void onPostExecute(List<String> webCode) {
   	 	//dialog.dismiss();
 		if(Utilities.contains(webCode, "You have been successfully logged on the network")){
+			SharedPreferences settings = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
 	    	Toast.makeText(context, "Logged in!", Toast.LENGTH_SHORT).show();
-	    	Data.setLogoutTime((int) (System.currentTimeMillis() / 1000L));
+	    	settings.edit().putInt("loginTimestamp", ((int) (System.currentTimeMillis() / 1000L))).commit();
 	    	//get logout key
 	    	Data.setLogout(webCode.get(39).substring(48));
 	    	Data.setLogout(Data.getLogout().substring(0, Data.getLogout().length()-2));

@@ -6,7 +6,6 @@ import android.text.format.Time;
 
 class Data {
 	private static String logout = null;
-	private static int logoutTime = Time.EPOCH_JULIAN_DAY;
 	private static final String AESKEY = "wouldn't you like to know?";
 	private static final String WIFI_NETWORK = "rusecure";
 	 
@@ -24,11 +23,5 @@ class Data {
 	}
     static String getLogout() {
 		return logout;
-	}
-	static int getLogoutTime() {
-		return logoutTime;
-	}
-	static void setLogoutTime(int logoutTime) {
-		Data.logoutTime = logoutTime;
 	}
 }

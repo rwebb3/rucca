@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.text.format.Time;
 import android.util.Log;
 
 public class AutoAuthReciever extends BroadcastReceiver{
@@ -17,6 +18,7 @@ public class AutoAuthReciever extends BroadcastReceiver{
 		Log.d("RUCCA-Epoch", "I am running my BroadcastReciever now.");
 		SharedPreferences settings = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
 		String enabled = settings.getString("enabled", "false");
+		int lastLogin = settings.getInt("loginTimestamp", Time.EPOCH_JULIAN_DAY);
 		        
 		ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService( Context.CONNECTIVITY_SERVICE );
 		NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
@@ -24,9 +26,9 @@ public class AutoAuthReciever extends BroadcastReceiver{
 		//The session is about to time out or already has.
 		//Let's go ahead and refresh the session and logout token.
 		Log.d("RUCCA-Epoch", "I am checking the time after this message. ");
-		Log.d("RUCCA-Epoch", "Stamp: " + String.valueOf(Data.getLogoutTime()));
+		Log.d("RUCCA-Epoch", "Stamp: " + String.valueOf(lastLogin));
 		Log.d("RUCCA-Epoch", "CurTime: " + String.valueOf(((int) (System.currentTimeMillis() / 1000L))));
-		if (Data.getLogoutTime() + (60*60*2) <= (int) (System.currentTimeMillis() / 1000L)) {
+		if (lastLogin + (60*60*2) <= (int) (System.currentTimeMillis() / 1000L)) {
 			Log.d("RUCCA-Epoch", "I decided it's been 2 hours. We should reAuth next chance we get");
 			Data.setLogout(null);
 		}
