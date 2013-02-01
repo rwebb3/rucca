@@ -13,6 +13,7 @@ public class changeLogBuilder {
 		addToChangeLog("0.9.3", "Just some clean up in the code. Essentially the same as previous build.");
 		addToChangeLog("1.0.0", "Bug Fix: Fixed Authentication Dectection. \n -Welcome to the Android Market!!");
 		addToChangeLog("1.0.1", "Improve UI wording \n -More Security");
+		addToChangeLog("1.0.3", "Fixed bugs related to changes in Android 4.2 \n -RUCCA now authenticates less often (Authenticated more times than needed)");
 		
 		//Add more changes above this comment
 		changelog.add("Change Log:");
