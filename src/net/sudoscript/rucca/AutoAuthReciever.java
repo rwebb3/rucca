@@ -18,6 +18,7 @@ public class AutoAuthReciever extends BroadcastReceiver{
 		Log.d("RUCCA-Epoch", "I am running my BroadcastReciever now.");
 		SharedPreferences settings = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
 		String enabled = settings.getString("enabled", "false");
+		String token = settings.getString("logoutToken", "null");
 		int lastLogin = settings.getInt("loginTimestamp", Time.EPOCH_JULIAN_DAY);
 		        
 		ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService( Context.CONNECTIVITY_SERVICE );
@@ -30,13 +31,12 @@ public class AutoAuthReciever extends BroadcastReceiver{
 		Log.d("RUCCA-Epoch", "CurTime: " + String.valueOf(((int) (System.currentTimeMillis() / 1000L))));
 		if (lastLogin + (60*60*2) <= (int) (System.currentTimeMillis() / 1000L)) {
 			Log.d("RUCCA-Epoch", "I decided it's been 2 hours. We should reAuth next chance we get");
-			Data.setLogout(null);
-		}
+			settings.edit().putString("logoutToken", "null").commit();
+			}
 		Log.d("RUCCA-Epoch", "I am now about to check if I am in a State that requires me to Auth. ");
-		if ( activeNetInfo != null && activeNetInfo.getTypeName().equals("WIFI") && Data.getLogout() == null && enabled.equals("true")){
+		if ( activeNetInfo != null && activeNetInfo.getTypeName().equals("WIFI") && token.equals("null") && enabled.equals("true")){
 			Log.d("RUCCA-Epoch", "YES! I am! Logging in...");
-			Data.setLogout("");
-			System.out.println("WIFI!");
+			settings.edit().putString("logoutToken", "busy").commit();
 			WifiManager wfManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
 		    WifiInfo wifiinfo = wfManager.getConnectionInfo();  
 		    if (Utilities.isConnectedToNetwork(wifiinfo)){

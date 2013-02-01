@@ -66,7 +66,8 @@ public class MainActivity extends Activity {
         // Handle item selection
         
             if(item.getTitle().equals("Logout")){
-            	if(!(Data.getLogout() == null) && !(Data.getLogout().equals(""))){
+                String token = settings.getString("logoutToken", "null");
+            	if(!(token.equals("null")) && !(token.equals("busy"))){
             		new Logout(context).execute();
             		toggleButton = (ToggleButton) findViewById(R.id.toggleButton1);
             		toggleButton.setChecked(false);

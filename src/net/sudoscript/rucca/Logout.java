@@ -18,15 +18,18 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
     class Logout extends AsyncTask<Void, Void, List<String>> {
 		 //ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "", "Logging out. Please wait...", true);
     	Context context = null;
+    	String token = null;
     	
       public Logout(Context c){
     	  context = c;
+    	  token = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE).getString("logoutToken", "null"); //get token from preferences
       }
 		 
       @Override
@@ -41,7 +44,7 @@ import android.widget.Toast;
       		List<String> webCode = new ArrayList<String>();
       	
    	    HttpClient httpclient = new DefaultHttpClient();
-   	    HttpPost httppost = new HttpPost("https://cca-svr-40.radford.edu/auth/perfigo_logout.jsp?user_key="+Data.getLogout());
+   	    HttpPost httppost = new HttpPost("https://cca-svr-40.radford.edu/auth/perfigo_logout.jsp?user_key="+token);
 
    	    try {
    	        // Add your data
@@ -76,6 +79,7 @@ import android.widget.Toast;
       
       @Override
       protected void onPostExecute(List<String> webCode) {
+  			SharedPreferences settings = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
      	 	//dialog.dismiss();
 			if(webCode.size() >= 1 && webCode.get(1).contains("<!--error=0-->")){
 				Toast.makeText(context, "You have been logged out!", Toast.LENGTH_SHORT).show();
@@ -83,6 +87,6 @@ import android.widget.Toast;
 			} else {
 				Toast.makeText(context, "Error Logging out. Please try re-authenticating.", Toast.LENGTH_SHORT).show();
 			}
-			Data.setLogout(null);
+			settings.edit().putString("logoutToken", "null").commit();
       }
 }

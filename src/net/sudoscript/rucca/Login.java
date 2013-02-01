@@ -24,15 +24,18 @@ import android.widget.Toast;
 
 class Login extends AsyncTask<Void, Void, List<String>> {
 	Context context = null;
+	String token = null;
 	//ProgressDialog dialog = ProgressDialog.show(MainActivity.getAppContext(), "", "Logging in. Please wait...", true);
 	
 	Login(Context context){
 		   this.context = context;
+		   token = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE).getString("logoutToken", "null"); //get token from preferences
 	}
 	
    @Override
    protected void onPreExecute() {
-	Data.setLogout("");
+	SharedPreferences settings = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE);
+	settings.edit().putString("logoutToken", "busy").commit();
 	//create Logging in dialog
    	//dialog.show();	
    }
@@ -102,8 +105,12 @@ class Login extends AsyncTask<Void, Void, List<String>> {
 	    	Toast.makeText(context, "Logged in!", Toast.LENGTH_SHORT).show();
 	    	settings.edit().putInt("loginTimestamp", ((int) (System.currentTimeMillis() / 1000L))).commit();
 	    	//get logout key
+			settings.edit().putString("logoutToken", webCode.get(39).substring(48)).commit();
+			settings.edit().putString("logoutToken", settings.getString("logoutToken", "null").substring(0, settings.getString("logoutToken", "null").length()-2)).commit();
+	    	/* Why was this two lines?
 	    	Data.setLogout(webCode.get(39).substring(48));
-	    	Data.setLogout(Data.getLogout().substring(0, Data.getLogout().length()-2));
+	    	Data.setLogout(token.substring(0, token.length()-2));\
+	    	*/
 		} else if(Utilities.contains(webCode, "Invalid")){
 			Toast.makeText(context, "Invalid Username/Password.", Toast.LENGTH_SHORT).show();
 		} else {
