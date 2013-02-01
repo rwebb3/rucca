@@ -54,12 +54,11 @@ public class MainActivity extends Activity {
         } else {
         	toggleButton.setChecked(false);
         }
-        if(getIntent().getData() != null){
-        	//if (getIntent().getData().getHost().equals("clients3.google.com")){
+        if(getIntent().getData() != null)
+        	if (getIntent().getData().getHost().equals("clients3.google.com")){
         	Login l = new Login(context);
         	l.execute();
-        	//}
-        }
+        	}
     }
     
     @Override
