@@ -11,7 +11,7 @@
     <string name="menu_about">About</string>
     <string name="menu_logout">Logout</string>
     <string name="menu_reAuth">Re-Authenticate</string>
-    <string name="aboutText">This app was written by Sam Wright (swright5@radford.edu) and was tested for use on Radford University\'s Campus. By using this app you are agreeing to breaking the Acceptable Use Policy.\n\n</string>
+    <string name="aboutText">This app was written by Sam Wright (swright5@radford.edu) and was tested for use on Radford University\'s Campus. Use of this app is allowed within the Acceptable Use Policy and has been reviewed by a Radford Security Advisor.\n\n</string>
     <string name="helpText">If you need help with this application please email the developer.</string>
 
 </resources>
