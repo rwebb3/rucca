@@ -52,7 +52,9 @@ class Utilities {
     static boolean isConnectedToNetwork(WifiInfo wi){
     	//Apparently in Android 4.2 it seems WifiInfo.getSSID() puts quotes around the SSID name.
     	//if SSID == rusecure OR SSID == "rusecure"
-    	if(wi.getSSID().equals(Data.getWifiNetwork()))
+    	if (wi.getSSID() == null) 
+    		return false;
+    	else if(wi.getSSID().equals(Data.getWifiNetwork()))
     		return true;
     	else if(wi.getSSID().equals("\""+Data.getWifiNetwork()+"\""))
     		return true;
