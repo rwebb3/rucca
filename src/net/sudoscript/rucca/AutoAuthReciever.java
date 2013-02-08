@@ -29,7 +29,7 @@ public class AutoAuthReciever extends BroadcastReceiver{
 		Log.d("RUCCA-Epoch", "I am checking the time after this message. ");
 		Log.d("RUCCA-Epoch", "Stamp: " + String.valueOf(lastLogin));
 		Log.d("RUCCA-Epoch", "CurTime: " + String.valueOf(((int) (System.currentTimeMillis() / 1000L))));
-		if (lastLogin + (60*60*2) <= (int) (System.currentTimeMillis() / 1000L)) {
+		if (lastLogin + (60*60) <= (int) (System.currentTimeMillis() / 1000L)) {
 			Log.d("RUCCA-Epoch", "I decided it's been 2 hours. We should reAuth next chance we get");
 			settings.edit().putString("logoutToken", "null").commit();
 			}
