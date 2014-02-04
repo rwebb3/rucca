@@ -49,14 +49,14 @@ class Login extends AsyncTask<Void, Void, List<String>> {
    		List<String> webCode = new ArrayList<String>();
    	
 	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("https://cca-svr-40.radford.edu/auth/perfigo_cm_validate.jsp");
+	    HttpPost httppost = new HttpPost("https://cca-svr-50.radford.edu/auth/perfigo_cm_validate.jsp");
 
 	    try {
 	        // Add your data
 	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 	        
 	        nameValuePairs.add(new BasicNameValuePair("reqFrom", "perfigo_login.jsp"));
-	        nameValuePairs.add(new BasicNameValuePair("uri", "https://cca-svr-40.radford.edu/"));
+	        nameValuePairs.add(new BasicNameValuePair("uri", "https://cca-svr-50.radford.edu/"));
 	        nameValuePairs.add(new BasicNameValuePair("cm", "ws32vklm"));
 	        nameValuePairs.add(new BasicNameValuePair("userip", Utilities.getIP(context)));
 	        nameValuePairs.add(new BasicNameValuePair("session", ""));
