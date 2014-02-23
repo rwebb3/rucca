@@ -49,8 +49,6 @@ class Login extends AsyncTask<Void, Void, List<String>> {
 		String URLToTest = utils.getURL();
 		if (URLToTest != "fail"){
 			this.URI = URLToTest;
-			System.out.println("IN LOGIN: " + URLToTest);
-			System.out.println("IN LOGIN: " + this.URI);
 		}
 	}
       }
@@ -58,7 +56,6 @@ class Login extends AsyncTask<Void, Void, List<String>> {
 	      System.out.println("Error getting URL");
       }
 
-      System.out.println("LOGIN AGAIN: " + this.URI);
 	   
 	// Create a new HttpClient and Post Header
 	    String username = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE).getString("username", ""); //get username from preferences
