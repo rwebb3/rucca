@@ -44,7 +44,7 @@ import android.widget.Toast;
       		List<String> webCode = new ArrayList<String>();
       	
    	    HttpClient httpclient = new DefaultHttpClient();
-   	    HttpPost httppost = new HttpPost("https://cca-svr-40.radford.edu/auth/perfigo_logout.jsp?user_key="+token);
+   	    HttpPost httppost = new HttpPost("https://cca-svr-50.radford.edu/auth/perfigo_logout.jsp?user_key="+token);
 
    	    try {
    	        // Add your data

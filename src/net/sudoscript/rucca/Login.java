@@ -23,12 +23,14 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 class Login extends AsyncTask<Void, Void, List<String>> {
+	String URI = "https://cca-svr-40.radford.edu/"; 
+	Utilities utils = new Utilities();
 	Context context = null;
 	String token = null;
 	//ProgressDialog dialog = ProgressDialog.show(MainActivity.getAppContext(), "", "Logging in. Please wait...", true);
 	
-	Login(Context context){
-		   this.context = context;
+	Login(Context context_){
+		   this.context = context_;
 		   token = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE).getString("logoutToken", "null"); //get token from preferences
 	}
 	
@@ -42,21 +44,36 @@ class Login extends AsyncTask<Void, Void, List<String>> {
 	 
    @Override
    protected List<String> doInBackground(Void... voids) {
-	// Create a new HttpClient and Post Header
+      try{
+	if(utils.captivePortal()){
+		String URLToTest = utils.getURL();
+		if (URLToTest != "fail"){
+			this.URI = URLToTest;
+			System.out.println("IN LOGIN: " + URLToTest);
+			System.out.println("IN LOGIN: " + this.URI);
+		}
+	}
+      }
+      catch (Exception e){
+	      System.out.println("Error getting URL");
+      }
+
+      System.out.println("LOGIN AGAIN: " + this.URI);
 	   
+	// Create a new HttpClient and Post Header
 	    String username = context.getSharedPreferences("MainActivity", Context.MODE_PRIVATE).getString("username", ""); //get username from preferences
    		String password = Utilities.getDecryptSettingsPassword(context); //get password from preferences
    		List<String> webCode = new ArrayList<String>();
    	
 	    HttpClient httpclient = new DefaultHttpClient();
-	    HttpPost httppost = new HttpPost("https://cca-svr-40.radford.edu/auth/perfigo_cm_validate.jsp");
+	    HttpPost httppost = new HttpPost(this.URI + "auth/perfigo_cm_validate.jsp");
 
 	    try {
 	        // Add your data
 	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 	        
 	        nameValuePairs.add(new BasicNameValuePair("reqFrom", "perfigo_login.jsp"));
-	        nameValuePairs.add(new BasicNameValuePair("uri", "https://cca-svr-40.radford.edu/"));
+	        nameValuePairs.add(new BasicNameValuePair("uri", this.URI));
 	        nameValuePairs.add(new BasicNameValuePair("cm", "ws32vklm"));
 	        nameValuePairs.add(new BasicNameValuePair("userip", Utilities.getIP(context)));
 	        nameValuePairs.add(new BasicNameValuePair("session", ""));

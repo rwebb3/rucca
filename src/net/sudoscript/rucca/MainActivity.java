@@ -56,6 +56,15 @@ public class MainActivity extends Activity {
         }
         if(getIntent().getData() != null)
         	if (getIntent().getData().getHost().equals("clients3.google.com")){
+			/*
+			    String URLToTest = Utilities.getURL();
+            				System.out.print(URLToTest);
+				if(URLToTest != "fail"){
+					String URL = URLToTest;
+            				Toast.makeText(context, URL, Toast.LENGTH_LONG).show();
+		    			new Login(context, URL).execute();
+				}
+				*/
         	Login l = new Login(context);
         	l.execute();
         	}
@@ -119,16 +128,26 @@ public class MainActivity extends Activity {
 	            	WifiManager wfManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
 	    		    WifiInfo wifiinfo = wfManager.getConnectionInfo();  
 	    		    if (Utilities.isConnectedToNetwork(wifiinfo)){
+				    /*
+			    	   String URLToTest = Utilities.getURL();
+            				System.out.print(URLToTest);
+				     if(URLToTest != "fail"){
+				      String URL = URLToTest;
+            		         	Toast.makeText(context, URL, Toast.LENGTH_LONG).show();
+		    		      new Login(context, URL).execute();
+				     }
+				     */
 	    		      Login l = new Login(context);
 	    		      l.execute();
-	    		    } 
-            	} else {
+	    		} else {
     		    	Toast.makeText(context, "Please connect to " + Data.getWifiNetwork() + ".", Toast.LENGTH_LONG).show();
-    		    }
+    		    	}
         		return true;
-            }
+		}
             	
-            else return super.onOptionsItemSelected(item);        
+                else return super.onOptionsItemSelected(item);        
+    	}
+	return false;
     }
 
     @Override
@@ -168,7 +187,15 @@ public class MainActivity extends Activity {
 			WifiManager wfManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
 		    WifiInfo wifiinfo = wfManager.getConnectionInfo();  
 		    if(Utilities.isConnectedToNetwork(wifiinfo)){
-		    	new Login(context).execute();
+			    /*
+			    String URLToTest = Utilities.getURL();
+            				System.out.print(URLToTest);
+				if(URLToTest != "fail"){
+					String URL = URLToTest;
+		    			new Login(context).execute();
+				}
+				*/
+			    new Login(context).execute();
 		    }
 
     	} else {
